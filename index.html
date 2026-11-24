@@ -339,49 +339,47 @@
     }
     .mini-box li { margin-bottom: 4px; }
 
-    /* Benchmark Interactive Chart */
-    .bench-controls {
-      display: flex;
-      gap: 8px;
-      margin: 14px 0 18px;
-      flex-wrap: wrap;
+    /* Workflow stepper for Moli x e2e */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 14px;
     }
-    .bench-box {
-      background: #fbfcff;
+    .step-box {
+      background: #ffffff;
       border: 1px solid var(--border-neutral);
-      border-radius: 12px;
-      padding: 20px;
+      border-radius: 11px;
+      padding: 13px 14px;
     }
-    .bar-row { margin-bottom: 14px; }
-    .bar-row:last-child { margin-bottom: 0; }
-    .bar-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
+    .step-num {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent-deep);
+      background: var(--accent-soft);
+      border-radius: 999px;
+      padding: 1px 8px;
       margin-bottom: 6px;
+    }
+    .step-box h4 {
+      font-size: 13.5px;
+      font-weight: 600;
       color: var(--ink);
-      font-weight: 500;
+      margin-bottom: 4px;
     }
-    .bar-track {
-      height: 14px;
-      background: #eceff8;
-      border-radius: 999px;
-      overflow: hidden;
+    .step-box p {
+      font-size: 12.5px;
+      color: var(--ink-2);
+      line-height: 1.55;
     }
-    .bar-fill {
-      height: 100%;
-      border-radius: 999px;
-      transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .bar-fill.base { background: #a8b1cc; }
-    .bar-fill.win { background: linear-gradient(90deg, #6877f4, #8d9bff); }
-    .bench-callout {
-      margin-top: 16px;
-      padding: 12px 15px;
+    .callout-soft {
+      margin-top: 12px;
+      padding: 11px 14px;
       border-radius: 10px;
       background: var(--accent-soft);
       border: 1px solid rgba(104, 119, 244, 0.22);
-      font-size: 13.2px;
+      font-size: 13px;
       color: #2f3872;
     }
 
@@ -448,6 +446,7 @@
     @media (max-width: 780px) {
       .hero { grid-template-columns: 1fr; text-align: left; padding: 24px; }
       .metrics { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
       .two-col, .grid-2 { grid-template-columns: 1fr; }
       .nav-links { display: none; }
     }
@@ -462,7 +461,7 @@
       </div>
       <nav class="nav-links">
         <a href="#voxradio">VoxRadio</a>
-        <a href="#benchmark">Moli 复测与生态</a>
+        <a href="#moli">Moli 出海生态</a>
         <a href="#modelbest">面壁智能实战</a>
         <a href="#commercial">投放与商业化</a>
       </nav>
@@ -611,12 +610,12 @@
       </article>
     </section>
 
-    <!-- Case 2: Moli Benchmark & GTM -->
-    <section id="benchmark">
+    <!-- Case 2: Moli Overseas GTM, Ecosystem & Product Feedback -->
+    <section id="moli">
       <div class="sec-head">
         <h2 class="sec-title">
           <svg class="sparkle" viewBox="0 0 24 24" fill="none"><path d="M12 1C12.8 8.2 15.8 11.2 23 12C15.8 12.8 12.8 15.8 12 23C11.2 15.8 8.2 12.8 1 12C8.2 11.2 11.2 8.2 12 1Z" fill="#6877F4"/></svg>
-          代表案例 02：揽岳智能 Moli — 控制变量复测、海外生态与产品排障
+          代表案例 02：揽岳智能 Moli — 海外生态冷启动、内容矩阵与产品排障
         </h2>
         <span class="sec-sub">GTM 部门运营实习生 · 2026.10 – 至今</span>
       </div>
@@ -624,81 +623,100 @@
       <article class="card">
         <div class="card-top">
           <div>
-            <h3>Built with Moli：为什么我不把“降低 90.7%”直接写成标题党？</h3>
-            <div class="card-meta">Apple M4 本机复测 · 1 轮预热 + 5 轮正式测试 · 重 DOM 任务 · 12 个浏览器会话 · 指标：进程总常驻内存（RSS 五轮中位数）</div>
+            <h3>从冷启动外联登上 e2e 官网合作伙伴，到 52 条目开源生态与推动研发修复 PR</h3>
+            <div class="card-meta">核心产品：Moli（面向 AI Agent 的轻量级浏览器）｜负责海外开源对接（DevRel）、生态目录、技术内容分发与竞品调研</div>
           </div>
           <div class="tag-row">
-            <span class="tag">控制变量</span>
-            <span class="tag">Rust sessfork-mcp</span>
-            <span class="tag">双语案例稿</span>
+            <span class="tag">e2e 官网合作</span>
+            <span class="tag">Awesome Moli 52 条目</span>
+            <span class="tag">19 篇技术实测</span>
+            <span class="tag">PR #3478</span>
           </div>
         </div>
 
-        <div class="bench-controls">
-          <button class="tab-btn active" onclick="setBench('full', this)">视角 1：整套方案对比（-90.7%）</button>
-          <button class="tab-btn" onclick="setBench('iso', this)">视角 2：控制浏览器变量，仅对比接入方案（-60.7%）</button>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('moli', 'moli-e2e', this)">1. Moli × e2e 官网合作全链路</button>
+          <button class="tab-btn" onclick="switchTab('moli', 'moli-eco', this)">2. Awesome Moli 与技术内容矩阵</button>
+          <button class="tab-btn" onclick="switchTab('moli', 'moli-bug', this)">3. 竞品调研与 57/57 排障推合 PR</button>
         </div>
 
-        <div class="bench-box">
-          <div class="bar-row">
-            <div class="bar-label">
-              <span id="bench-base-name">Chrome Headless Shell + Playwright MCP</span>
-              <span id="bench-base-val">2,439.5 MiB</span>
+        <!-- Tab 1: Moli x e2e -->
+        <div class="tab-panel active" id="moli-e2e">
+          <div class="steps-grid">
+            <div class="step-box">
+              <span class="step-num">STEP 01 · 精准筛选</span>
+              <h4>开源线索研判建联</h4>
+              <p>先核查目标项目如何调用浏览器再发精准邀约；单阶段推进 <strong>80 个邀约对象</strong>，飞书主表精细跟进 <strong>56 条仓库记录</strong>。</p>
             </div>
-            <div class="bar-track"><div class="bar-fill base" id="bench-base-bar" style="width: 100%;"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label">
-              <span>Moli + sessfork-mcp（原生桥接）</span>
-              <span style="color: var(--accent-deep); font-weight: 600;">226.3 MiB</span>
+            <div class="step-box">
+              <span class="step-num">STEP 02 · Slack 磋商</span>
+              <h4>对齐集成与宣传方案</h4>
+              <p>主动建联 e2e 维护者，在 Slack 持续跟进接入场景、官方贡献规范与联合宣传节点，明确双方交付清单。</p>
             </div>
-            <div class="bar-track"><div class="bar-fill win" id="bench-win-bar" style="width: 9.3%;"></div></div>
+            <div class="step-box">
+              <span class="step-num">STEP 03 · 研发协同</span>
+              <h4>补齐文档与实测素材</h4>
+              <p>协调研发完成技术实现与公开仓库 PR，本人独立准备登录测试示例文案、实测截图与完整运行说明，降低研发沟通损耗。</p>
+            </div>
+            <div class="step-box">
+              <span class="step-num">STEP 04 · 官网落地</span>
+              <h4>留下可运行获客入口</h4>
+              <p>成功上线 <strong>e2e 官网集成文档</strong>，将 <strong>Lexmount 列为官网合作伙伴</strong>，开发者可直接跑通登录/截图/登出完整测试。</p>
+            </div>
           </div>
-          <div class="bench-callout" id="bench-note">
-            <strong>口径拆解：</strong>整套替换后任务结束时进程总常驻内存低 <strong>90.7%</strong>（2,439.5 → 226.3 MiB）。但这一降幅同时包含“浏览器本体”和“接入协议”两项变化；点击上方“视角 2”可单独拆看同为 Moli 下的协议收益（60.7%），对外传播必须配上对照方案、机器与任务前提。
+          <div class="callout-soft">
+            <strong>核心价值：</strong>区别于发完即忘的曝光稿，这项合作在海外开发者高频测试工具链官网留下了长期可复用的<strong>真实试用入口</strong>与官方背书。
+          </div>
+        </div>
+
+        <!-- Tab 2: Awesome Moli & Technical Content -->
+        <div class="tab-panel" id="moli-eco">
+          <div class="two-col">
+            <div class="mini-box">
+              <h4>Awesome Moli 生态目录建设</h4>
+              <ul>
+                <li>逐项核查 <strong>185 条原始线索</strong>，确认 Moli 承担作用、试用路径与作者署名偏好，筛出 <strong>67 条收录候选</strong>。</li>
+                <li>助力团队上线涵盖 <strong>52 个条目、7 种语言</strong>的公开目录，上线后持续闭环跟进海外作者（如 dsh-moli、CTI Expert）修改意见并同步回帖。</li>
+              </ul>
+            </div>
+            <div class="mini-box">
+              <h4>技术实测分发与社区案例共创</h4>
+              <ul>
+                <li>围绕登录态复用、动态网页读取、Playwright 迁移等真实痛点输出实测稿：单阶段 <strong>19 篇实测稿中 16 篇公开，6 平台发布 28 条次</strong>。</li>
+                <li>同步整理高校获奖案例（J006《AI 实习导航》小红书落地），并对接社区开发者授权复测，完成首期 <em>Built with Moli</em> 双语案例稿；Discord 每 1–2 天梳理主分支合入发布用户向更新公告。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Competitor Research & 57/57 Bug Triage -->
+        <div class="tab-panel" id="moli-bug">
+          <div class="two-col">
+            <div class="mini-box">
+              <h4>4 个海外竞品社区 48 条带原帖痛点研究</h4>
+              <ul>
+                <li>深度梳理 <strong>Lightpanda、Kitesurf、Obscura、Browser Use</strong> 四个海外竞品社区，沉淀 <strong>48 条带原帖链接的用户关注点</strong>。</li>
+                <li>按“使用障碍 / 功能需求 / 教程缺口”结构化归类，直接反哺 Moli 的技术教程选题与产品体验优化方向。</li>
+              </ul>
+            </div>
+            <div class="mini-box">
+              <h4>定位 57/57 基准测试盲区 → 推动修复 PR #3478</h4>
+              <ul>
+                <li>维护者反馈多行文本框预填文字程序可读但截图空白，原有兼容性套件却显示 <strong>57/57 全通过</strong>。</li>
+                <li>排查发现原测试是拿同一浏览器两次截图互相对比（两次都缺字所以 diff 为 0）；改用原始测试页并排对照 <strong>Moli 与 Chrome 实际画面、DOM 读数及截图像素</strong>，输出可复查问题单，推动研发合入文本框绘制修复 PR（<code>#3478</code>）。</li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <div class="proof-links" style="margin-top:16px;">
-          <a class="proof-link" href="https://github.com/lexmount/moli/discussions/3465#discussioncomment-19846884" target="_blank" rel="noopener">GitHub 公开复测回传 ↗</a>
+          <a class="proof-link" href="https://e2e.com/examples/moli" target="_blank" rel="noopener">e2e 官网合作伙伴案例 ↗</a>
+          <a class="proof-link" href="https://e2e.com/docs/integrations/moli" target="_blank" rel="noopener">e2e 集成文档 ↗</a>
+          <a class="proof-link" href="https://github.com/lexmount/awesome-moli" target="_blank" rel="noopener">Awesome Moli 目录 ↗</a>
+          <a class="proof-link" href="https://juejin.cn/post/7706755914727981096" target="_blank" rel="noopener">掘金实测文章 ↗</a>
+          <a class="proof-link" href="https://github.com/lexmount/moli/pull/3478" target="_blank" rel="noopener">推动修复 PR #3478 ↗</a>
         </div>
       </article>
-
-      <div class="grid-2">
-        <article class="sub-card">
-          <div>
-            <h3>Moli × e2e 官网合作 &amp; Awesome Moli 生态目录</h3>
-            <p style="margin-bottom:10px;">
-              从 80 个精准开源邀约（主表跟进 56 条仓库）出发，主导冷启动建联 e2e 维护者、Slack 对齐贡献规范与联合宣传，输出登录测试示例文案/实测截图并协同研发交付，成功登上 <strong>e2e.com 官网合作伙伴示例</strong>。
-            </p>
-            <p>
-              同步主导 Awesome Moli 生态审核：核查 <strong>185 条线索 → 67 条候选 → 上线 52 个条目、覆盖 7 种语言</strong>；11 月单阶段整理 19 篇技术实测稿（16 篇公开、6 平台发布 28 条次）。
-            </p>
-          </div>
-          <div class="proof-links">
-            <a class="proof-link" href="https://e2e.com/examples/moli" target="_blank" rel="noopener">e2e 官网案例 ↗</a>
-            <a class="proof-link" href="https://e2e.com/docs/integrations/moli" target="_blank" rel="noopener">e2e 集成文档 ↗</a>
-            <a class="proof-link" href="https://github.com/lexmount/awesome-moli" target="_blank" rel="noopener">Awesome Moli ↗</a>
-            <a class="proof-link" href="https://juejin.cn/post/7706755914727981096" target="_blank" rel="noopener">掘金实测文章 ↗</a>
-          </div>
-        </article>
-
-        <article class="sub-card">
-          <div>
-            <h3>57/57 测试全过但截图缺字 → 定位基准盲区推合 PR</h3>
-            <p style="margin-bottom:10px;">
-              开源维护者反馈多行文本框预填文字程序可读但截图空白，原有兼容性套件却显示 <strong>57/57 全通过</strong>。
-            </p>
-            <p>
-              排查发现原测试是把同一浏览器两次截图互相对比（两次都缺字所以 diff 为 0）。改用原始测试页并排对照 <strong>Moli 与 Chrome 渲染画面、DOM 读数及截图像素</strong>，将模糊抱怨转化为确定性复现单，直接推动研发合入文本框绘制修复 PR（<code>#3478</code>）；并调研 4 个海外竞品社区沉淀 <strong>48 条带原帖痛点</strong>。
-            </p>
-          </div>
-          <div class="proof-links">
-            <a class="proof-link" href="https://github.com/lexmount/moli/pull/3478" target="_blank" rel="noopener">对应修复 PR #3478 ↗</a>
-            <a class="proof-link" href="https://github.com/fastslack/mtw-e2e-runner/issues/1#issuecomment-7042952174" target="_blank" rel="noopener">维护者原帖沟通 ↗</a>
-          </div>
-        </article>
-      </div>
     </section>
 
     <!-- Case 3: ModelBest Deep Showcase -->
@@ -840,8 +858,8 @@
 
   <script>
     const LENS_COPY = {
-      ops: '聚焦 <strong>AI 开发者生态（DevRel）与出海增长</strong>：在面壁智能（OpenBMB / VoxCPM / 声辞）与揽岳智能（Moli）连续实战，擅长海外开源冷启动、跨平台归因看板与数据自动化，并能用 <strong>Claude Code / Codex</strong> 独立交付原生 AI 产品。',
-      pm: '以 <strong>“真实痛点洞察 + 快速原生原型 + 严谨实验验证”</strong> 做 AI 产品：独立迭代 246 commits 原生 macOS AI 电台 <strong>VoxRadio</strong>，撰写过 20 页语音输入法竞品报告（对标豆包/微信/Wispr Flow），并具备海外社区研究（48 条原帖）、定位 57/57 测试盲区推合 PR 及控制变量复测实战。'
+      ops: '聚焦 <strong>AI 开发者生态（DevRel）与出海增长</strong>：在面壁智能（OpenBMB / VoxCPM / 声辞）与揽岳智能（Moli）连续实战，主导过海外官网合作伙伴落地（e2e）、12 平台归因看板与三平台飞书监控自动化，并能用 <strong>Claude Code / Codex</strong> 独立交付原生 AI 产品。',
+      pm: '以 <strong>“真实痛点洞察 + 快速原生原型 + 严谨实验验证”</strong> 做 AI 产品：独立迭代 246 commits 原生 macOS AI 电台 <strong>VoxRadio</strong>，独立撰写 20 页语音输入法竞品报告获团队采纳，并具备海外社区研究（48 条原帖）与定位 57/57 测试盲区推合 PR 实战。'
     };
 
     function setLens(mode, btn) {
@@ -856,30 +874,6 @@
       btn.classList.add('active');
       sec.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       document.getElementById(panelId).classList.add('active');
-    }
-
-    function setBench(mode, btn) {
-      document.querySelectorAll('#benchmark .bench-controls .tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const baseName = document.getElementById('bench-base-name');
-      const baseVal = document.getElementById('bench-base-val');
-      const baseBar = document.getElementById('bench-base-bar');
-      const winBar = document.getElementById('bench-win-bar');
-      const note = document.getElementById('bench-note');
-
-      if (mode === 'full') {
-        baseName.textContent = 'Chrome Headless Shell + Playwright MCP';
-        baseVal.textContent = '2,439.5 MiB';
-        baseBar.style.width = '100%';
-        winBar.style.width = '9.3%';
-        note.innerHTML = '<strong>口径拆解：</strong>整套替换后任务结束时进程总常驻内存低 <strong>90.7%</strong>（2,439.5 → 226.3 MiB）。但这一降幅同时包含“浏览器本体”和“接入协议”两项变化；点击“视角 2”可单独拆看同为 Moli 下的协议收益。';
-      } else {
-        baseName.textContent = 'Moli + Playwright MCP（固定浏览器，仅换接入协议）';
-        baseVal.textContent = '575.6 MiB';
-        baseBar.style.width = '100%';
-        winBar.style.width = '39.3%';
-        note.innerHTML = '<strong>控制变量收益：</strong>当两边都固定使用 Moli，仅对比 Playwright MCP（575.6 MiB）与原生桥接 sessfork-mcp（226.3 MiB）时，内存占用低 <strong>60.7%</strong>。把两组口径清楚分开，才能经得起开发者和面试官的深挖追问。';
-      }
     }
 
     function copyText(text, msg) {
