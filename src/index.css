@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+:root {
+  --paper: #f7f6f2;
+  --paper-alt: #efede6;
+  --surface: #ffffff;
+  --ink: #14161a;
+  --ink-2: #444854;
+  --muted: #707584;
+  --vermilion: #e84a27;
+  --vermilion-hover: #cf3b1a;
+  --cobalt: #2563eb;
+  --emerald: #10b981;
+  --line: rgba(20, 22, 26, 0.14);
+  --line-strong: rgba(20, 22, 26, 0.85);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(to right, rgba(20, 22, 26, 0.052) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(20, 22, 26, 0.052) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgba(232, 74, 39, 0.18);
+    color: var(--ink);
+  }
+}
+
+/* Blueprint technical utility classes */
+.blueprint-card {
+  background: #ffffff;
+  border: 1px solid rgba(20, 22, 26, 0.15);
+  box-shadow:
+    0 1px 0 rgba(20, 22, 26, 0.06),
+    0 18px 40px -24px rgba(20, 22, 26, 0.16);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.blueprint-card:hover {
+  border-color: rgba(20, 22, 26, 0.34);
+}
+
+.blueprint-card-ink {
+  background: #ffffff;
+  border: 1px solid #14161a;
+  box-shadow: 4px 4px 0 0 rgba(20, 22, 26, 0.07);
+}
+
+/* Signature Plan B dashed-seam vermilion CTA */
+.cta-vermilion {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--vermilion);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1px solid #c53616;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 10px 24px -10px rgba(232, 74, 39, 0.55);
+  transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.cta-vermilion:hover {
+  background-color: var(--vermilion-hover);
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 14px 28px -10px rgba(232, 74, 39, 0.65);
+}
+
+.cta-vermilion:active {
+  transform: translateY(0);
+}
+
+.cta-seam {
+  border-left: 1px dashed rgba(255, 255, 255, 0.48);
+}
+
+/* Animated dashed flow stroke for SVG pipelines */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+.animate-dash-flow {
+  stroke-dasharray: 5 5;
+  animation: dash-flow 1.3s linear infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.82);
+  }
+}
+
+.led-pulse {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-dash-flow,
+  .led-pulse {
+    animation: none;
+  }
+}
