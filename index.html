@@ -461,9 +461,9 @@
       </div>
       <nav class="nav-links">
         <a href="#voxradio">VoxRadio</a>
+        <a href="#molipulse">MoliPulse</a>
         <a href="#moli">Moli 出海生态</a>
         <a href="#modelbest">面壁智能实战</a>
-        <a href="#commercial">投放与商业化</a>
       </nav>
     </div>
   </header>
@@ -490,7 +490,8 @@
           聚焦 <strong>AI 开发者生态（DevRel）与出海增长</strong>：在面壁智能（OpenBMB / VoxCPM / 声辞）与揽岳智能（Moli）连续实战，擅长海外开源冷启动、跨平台归因看板与数据自动化，并能用 <strong>Claude Code / Codex</strong> 独立交付原生 AI 产品。
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://github.com/luowenxi76-coder/VoxRadio-public" target="_blank" rel="noopener">查看 VoxRadio 开源仓库 ↗</a>
+          <a class="btn btn-primary" href="molipulse.html" target="_blank" rel="noopener">体验 MoliPulse 公开核验报告 ↗</a>
+          <a class="btn" href="https://github.com/luowenxi76-coder/VoxRadio-public" target="_blank" rel="noopener">查看 VoxRadio 开源仓库 ↗</a>
           <button class="btn" onclick="copyText('13692774440', '手机号已复制')">📞 13692774440</button>
           <button class="btn" onclick="copyText('1009843439@qq.com', '邮箱已复制')">✉️ 1009843439@qq.com</button>
         </div>
@@ -610,12 +611,105 @@
       </article>
     </section>
 
+    <!-- Case 1.5: MoliPulse -->
+    <section id="molipulse">
+      <div class="sec-head">
+        <h2 class="sec-title">
+          <svg class="sparkle" viewBox="0 0 24 24" fill="none"><path d="M12 1C12.8 8.2 15.8 11.2 23 12C15.8 12.8 12.8 15.8 12 23C11.2 15.8 8.2 12.8 1 12C8.2 11.2 11.2 8.2 12 1Z" fill="#6877F4"/></svg>
+          代表作品 02：MoliPulse — Agent-Native 开源生态与 GTM 记忆引擎
+        </h2>
+        <span class="sec-sub">独立产品定义 &amp; 全栈落地 · 2026.11</span>
+      </div>
+
+      <article class="card">
+        <div class="card-top">
+          <div>
+            <h3>不强迫用户维护第二个后台，用 Native MCP Server 给 Codex / Claude 装上确定性 GTM 记忆</h3>
+            <div class="card-meta">Native stdio MCP Server（6 Tools + 3 URIs）+ SQLite WAL 台账 + <code>moli fetch</code> 截图取证 + 30 分钟静默守护进程</div>
+          </div>
+          <div class="tag-row">
+            <span class="tag">MCP Server</span>
+            <span class="tag">FastAPI + React</span>
+            <span class="tag">SQLite WAL</span>
+            <span class="tag">18/18 pytest</span>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('molipulse', 'mp-pivot', this)">1. 产品反思：从独立网页 → MCP 记忆层</button>
+          <button class="tab-btn" onclick="switchTab('molipulse', 'mp-ledger', this)">2. 确定性台账与飞书防冲突同步</button>
+          <button class="tab-btn" onclick="switchTab('molipulse', 'mp-provider', this)">3. 订阅优先三层 Provider 与联动 VoxRadio</button>
+        </div>
+
+        <div class="tab-panel active" id="mp-pivot">
+          <div class="two-col">
+            <div class="mini-box">
+              <h4>为什么要推翻“再做一个网页后台”？</h4>
+              <ul>
+                <li>在揽岳每天早上第一件事是在 Codex 里问“今天有哪些新回复、等谁推进”，但无状态对话框跨会话会失忆、反复翻老帖。</li>
+                <li>如果强迫自己每天切到独立 Web 后台维护数据，反而增加运营负担；最好的形态是直接作为 <strong>Native stdio MCP Server</strong> 挂进 Codex / Claude Code / Cursor。</li>
+              </ul>
+            </div>
+            <div class="mini-box">
+              <h4>三条核心高频工作流（零习惯迁移）</h4>
+              <ul>
+                <li><code>pulse_today</code>：捕获零点赞新回复与 PR 合入，分清等我 / 待研发 / 等对方，同一回复跨会话只提醒一次。</li>
+                <li><code>pulse_scout</code> &amp; <code>pulse_brief</code>：跨目录/改名去重找项目，并一键导出周报、Discord 播报与零隐私公开证据页。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="mp-ledger">
+          <div class="two-col">
+            <div class="mini-box">
+              <h4>SQLite WAL 强去重与三态分离</h4>
+              <ul>
+                <li>基于 GitHub 数字 <code>repo_id</code> 与历史别名表跨目录、跨改名强去重（已内置 50+ Awesome Moli 生态台账）。</li>
+                <li>严格分离<strong>外部客观事实 / 内部负责人 / 飞书回执</strong>三态；通过 <code>lark-cli base</code> 写回飞书前先做并发修改 diff 检测，防止覆盖同事更新。</li>
+              </ul>
+            </div>
+            <div class="mini-box">
+              <h4>Dogfooding <code>moli fetch</code> 真实取证</h4>
+              <ul>
+                <li>集成自研浏览器 <code>moli fetch</code>（v1.1.27+）读取动态渲染网页 Markdown、DOM Eval 与本地落盘 PNG 截图证据（拒绝 Base64 污染上下文）。</li>
+                <li>遇到登录墙或空壳诚实标为 <code>unverified</code> 并保留检查点，绝不编造结论。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="mp-provider">
+          <div class="two-col">
+            <div class="mini-box">
+              <h4>三层可插拔 Provider（订阅优先）</h4>
+              <ul>
+                <li>兼顾个人订阅习惯：优先无痛调用本机官方订阅 CLI（Codex / Claude Code）+ Pydantic JSON Schema 零幻觉守卫。</li>
+                <li>同时兼容任意 OpenAI 协议 API Key 及离线规则引擎兜底，断网或额度耗尽绝不白屏。</li>
+              </ul>
+            </div>
+            <div class="mini-box">
+              <h4>30 分钟静默守护进程与 VoxRadio 联动</h4>
+              <ul>
+                <li><code>pulsed</code> 每 30 分钟后台静默巡检，支持 macOS 通知及直接联动个人开源项目 <strong>VoxRadio</strong> 触发语音播报。</li>
+                <li>完整配套 18 项 pytest 自动化验收测试，已导出可直接在线点验的零隐私证据报告。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="proof-links" style="margin-top:16px;">
+          <a class="proof-link" href="molipulse.html" target="_blank" rel="noopener">打开 MoliPulse 在线公开核验报告（支持明暗切换） ↗</a>
+        </div>
+      </article>
+    </section>
+
     <!-- Case 2: Moli Overseas GTM, Ecosystem & Product Feedback -->
     <section id="moli">
       <div class="sec-head">
         <h2 class="sec-title">
           <svg class="sparkle" viewBox="0 0 24 24" fill="none"><path d="M12 1C12.8 8.2 15.8 11.2 23 12C15.8 12.8 12.8 15.8 12 23C11.2 15.8 8.2 12.8 1 12C8.2 11.2 11.2 8.2 12 1Z" fill="#6877F4"/></svg>
-          代表案例 02：揽岳智能 Moli — 海外生态冷启动、内容矩阵与产品排障
+          实战案例 01：揽岳智能 Moli — 海外生态冷启动、内容矩阵与产品排障
         </h2>
         <span class="sec-sub">GTM 部门运营实习生 · 2026.10 – 至今</span>
       </div>
@@ -724,7 +818,7 @@
       <div class="sec-head">
         <h2 class="sec-title">
           <svg class="sparkle" viewBox="0 0 24 24" fill="none"><path d="M12 1C12.8 8.2 15.8 11.2 23 12C15.8 12.8 12.8 15.8 12 23C11.2 15.8 8.2 12.8 1 12C8.2 11.2 11.2 8.2 12 1Z" fill="#6877F4"/></svg>
-          代表案例 03：面壁智能（OpenBMB / VoxCPM / 声辞）全链路实战
+          实战案例 02：面壁智能（OpenBMB / VoxCPM / 声辞）全链路实战
         </h2>
         <span class="sec-sub">运营实习生 · 2026.04 – 2026.08</span>
       </div>

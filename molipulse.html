@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoliPulse · 开源生态跟进与公开证据核验报告 (2026-11-19 – 2026-11-26)</title>
+  <style>
+    :root {
+      --bg: #0C0D10;
+      --surface: #14161B;
+      --surface-2: #1B1E26;
+      --border: #262A34;
+      --text: #ECEEF2;
+      --muted: #9BA1AE;
+      --accent: #E5853B;
+      --accent-soft: rgba(229, 133, 59, 0.14);
+      --quote-bg: #101217;
+    }
+    html[data-theme="light"] {
+      --bg: #FAF9F6;
+      --surface: #FFFFFF;
+      --surface-2: #F3F1EC;
+      --border: #E4E0D8;
+      --text: #191A1D;
+      --muted: #5F636E;
+      --accent: #C85E17;
+      --accent-soft: rgba(200, 94, 23, 0.11);
+      --quote-bg: #F6F4EE;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.62;
+    }
+    .wrap { max-width: 1060px; margin: 0 auto; padding: 40px 24px 72px; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+      border-bottom: 1px solid var(--border); padding-bottom: 24px; margin-bottom: 28px;
+    }
+    .eyebrow {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+    }
+    h1 { margin: 8px 0 8px; font-size: 28px; letter-spacing: -0.02em; }
+    .sub { margin: 0; color: var(--muted); font-size: 14px; max-width: 720px; }
+    .theme-btn {
+      background: var(--surface); color: var(--text); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 14px; cursor: pointer; font-size: 13px;
+    }
+    .metrics {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px; margin-bottom: 34px;
+    }
+    .metric {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px;
+    }
+    .metric .num { font-size: 26px; font-weight: 700; color: var(--accent); font-family: ui-monospace, monospace; }
+    .metric .lbl { font-size: 13px; color: var(--muted); margin-top: 4px; }
+    h2 {
+      font-size: 18px; margin: 34px 0 14px; display: flex; align-items: center; gap: 10px;
+    }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+    }
+    .card-top { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+    .idx {
+      font-family: ui-monospace, monospace; font-size: 12px; color: var(--accent);
+      background: var(--accent-soft); padding: 2px 7px; border-radius: 5px;
+    }
+    .repo-title, .sig-title a { color: var(--text); text-decoration: none; font-weight: 600; }
+    .repo-title:hover, .sig-title a:hover { color: var(--accent); }
+    .sig-title { margin: 4px 0 12px; font-size: 16px; }
+    .stage-badge, .sample-badge, .repo-chip {
+      font-size: 12px; padding: 2px 9px; border-radius: 999px;
+      background: var(--surface-2); border: 1px solid var(--border); color: var(--muted);
+    }
+    .fact { margin: 8px 0 14px; font-size: 14.5px; }
+    .verbatim {
+      margin: 0 0 12px; padding: 12px 14px; background: var(--quote-bg);
+      border-left: 3px solid var(--border); border-radius: 6px; font-size: 13.5px; color: var(--muted);
+    }
+    .judgment {
+      margin: 0 0 14px; padding: 12px 14px; background: var(--accent-soft);
+      border-left: 3px solid var(--accent); border-radius: 6px; font-size: 13.5px;
+    }
+    .block-label { font-size: 11.5px; font-weight: 600; margin-bottom: 4px; color: var(--muted); }
+    .block-label.amber { color: var(--accent); }
+    .links-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .evidence-btn, .pill-link {
+      display: inline-block; font-size: 12.5px; text-decoration: none;
+      padding: 5px 11px; border-radius: 7px; font-weight: 500;
+    }
+    .evidence-btn { background: var(--accent); color: #fff; }
+    .pill-link { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+    .eco-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px;
+    }
+    .eco-item {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px;
+      font-size: 13px;
+    }
+    .eco-item a { color: var(--accent); text-decoration: none; }
+    .eco-slug { display: block; font-family: ui-monospace, monospace; font-size: 11.5px; color: var(--muted); margin: 2px 0 6px; }
+    .eco-item p { margin: 0; color: var(--text); }
+    footer {
+      margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
+      font-size: 12.5px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">MoliPulse v2.0 · Grounded Public Verification Artifact</div>
+        <h1>开源生态跟进与社区实证核验报告</h1>
+        <p class="sub">
+          统计窗口：2026-11-19 至 2026-11-26 · 由本机 <code>pulse brief weekly --audience public</code> 自动生成。
+          已自动剥离全部内部备注、私有线程与团队交接记录；页面中每一项判断均可直接点击跳回 GitHub 原始回复、PR 或公开实测页独立核验。
+        </p>
+      </div>
+      <button class="theme-btn" onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'">切换明暗主题</button>
+    </header>
+
+    <section class="metrics">
+      <div class="metric">
+        <div class="num">3</div>
+        <div class="lbl">公开可核验合作与案例线</div>
+      </div>
+      <div class="metric">
+        <div class="num">1 / 2</div>
+        <div class="lbl">独立技术文章 / 公开跨平台发布条次</div>
+      </div>
+      <div class="metric">
+        <div class="num">5</div>
+        <div class="lbl">社区一手原话与评论级锚点样本</div>
+      </div>
+      <div class="metric">
+        <div class="num">51</div>
+        <div class="lbl">Awesome Moli 已建档去重生态项目</div>
+      </div>
+    </section>
+
+    <h2>一、生态合作与标杆案例公开证据链</h2>
+    <div class="grid">
+      
+            <article class="card">
+              <div class="card-top">
+                <span class="idx">[01]</span>
+                <a class="repo-title" href="https://github.com/lexmount/moli" target="_blank" rel="noopener">lexmount/moli</a>
+                <span class="stage-badge">PR 待审</span>
+              </div>
+              <p class="fact">社区反馈 Runtime.evaluate(awaitPromise:true) 下尾部 consoleAPICalled 事件晚于响应到达，关联修复 PR #3471 待审</p>
+              <div class="links-row">
+                <a class="evidence-btn" href="https://github.com/lexmount/moli/issues/2856" target="_blank" rel="noopener">直达原始证据 ↗</a>
+                <a class="pill-link" href="https://github.com/lexmount/moli/discussions/3465" target="_blank" rel="noopener">补充核验页 ↗</a>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="card-top">
+                <span class="idx">[02]</span>
+                <a class="repo-title" href="https://github.com/e2e-inc/e2e" target="_blank" rel="noopener">e2e-inc/e2e</a>
+                <span class="stage-badge">已接入并发布</span>
+              </div>
+              <p class="fact">集成 PR #1843 已合入主分支，且官网可运行登录测试示例（e2e.com/examples/moli）已上线</p>
+              <div class="links-row">
+                <a class="evidence-btn" href="https://github.com/e2e-inc/e2e/pull/1843" target="_blank" rel="noopener">直达原始证据 ↗</a>
+                <a class="pill-link" href="https://e2e.com/examples/moli" target="_blank" rel="noopener">补充核验页 ↗</a>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="card-top">
+                <span class="idx">[03]</span>
+                <a class="repo-title" href="https://github.com/wasabihu/sessfork" target="_blank" rel="noopener">wasabihu/sessfork</a>
+                <span class="stage-badge">联合推广</span>
+              </div>
+              <p class="fact">@wasabihu（2026-11-24）新回复：「Permission &amp; charts: You&#x27;re very welcome to quote the benchmark results and use the charts across your blog, X, Discord, and WeChat official account.」</p>
+              <div class="links-row">
+                <a class="evidence-btn" href="https://github.com/lexmount/moli/discussions/3465#discussioncomment-19846839" target="_blank" rel="noopener">直达原始证据 ↗</a>
+                <a class="pill-link" href="https://github.com/lexmount/moli/discussions/3465" target="_blank" rel="noopener">补充核验页 ↗</a>
+              </div>
+            </article>
+            
+    </div>
+
+    <h2>二、社区与竞品一手原话 vs 运营判断对照</h2>
+    <div class="grid">
+      
+            <article class="card">
+              <div class="card-top">
+                <span class="idx">[S01]</span>
+                <span class="repo-chip">lexmount/moli</span>
+                <span class="sample-badge">实时公开采集</span>
+              </div>
+              <h3 class="sig-title"><a href="https://github.com/lexmount/moli/discussions/3465" target="_blank" rel="noopener">A 605 KB zero-Node Rust MCP server over moli --remote-debugging-pipe (9.72x less RAM &amp; 1.94x faster than Chrome MCP)</a></h3>
+              <blockquote class="verbatim">
+                <div class="block-label">作者 / 维护者原话短摘（@wasabihu）</div>
+                “Hey Moli community! While integrating moli (v1.1.27) as a headless backend for sessfork (a tool that forks live Chrome Cookies + LocalStorage into headless AI agent browsers), I ran into an unexpected benchmark result — and ended up building a tiny standalone ...”
+              </blockquote>
+              <div class="judgment">
+                <div class="block-label amber">运营判断（可核验推演）</div>
+                作者已在回复中明确授权全渠道引用实测数据与中英双语 2x 图表，并补充了 Apple M5 24GB 原始跑分 JSON；我方在 M4 24GB 完成 5 轮中位数复核（内存较 Chrome 降 90.7%），适合作为 Built with Moli 首期案例发布，并在文中分开标注作者 M5 与官方 M4 复测口径。
+              </div>
+              <div class="links-row">
+                <a class="evidence-btn" href="https://github.com/lexmount/moli/discussions/3465" target="_blank" rel="noopener">核对原帖具体回复 ↗</a>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="card-top">
+                <span class="idx">[S02]</span>
+                <span class="repo-chip">browser-use/browser-use</span>
+                <span class="sample-badge">历史案例回放</span>
+              </div>
+              <h3 class="sig-title"><a href="https://github.com/browser-use/browser-use/issues/4742" target="_blank" rel="noopener">Bug: Screenshot blob in tool result poisons conversation context → API 400 on all subsequent turns</a></h3>
+              <blockquote class="verbatim">
+                <div class="block-label">作者 / 维护者原话短摘（@PHclaw）</div>
+                “Tool results from CDP screenshot actions should not inline raw base64 image data into the conversation history... For a permanent fix, the suggested approach of returning a local file path instead of raw base64 is the right direction.”
+              </blockquote>
+              <div class="judgment">
+                <div class="block-label amber">运营判断（可核验推演）</div>
+                在 Claude Code / Codex 等多轮 Agent 会话里直接返回大图 Base64 会把整段会话彻底锁死报错；我方整理 Moli 接入 Coding Agent 的官方示例与最佳实践时，应明确示范截图落盘返回受限本地路径的做法。
+              </div>
+              <div class="links-row">
+                <a class="evidence-btn" href="https://github.com/browser-use/browser-use/issues/4742#issuecomment-4333194470" target="_blank" rel="noopener">核对原帖具体回复 ↗</a>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="card-top">
+                <span class="idx">[S03]</span>
+                <span class="repo-chip">lexmount/moli</span>
+                <span class="sample-badge">历史案例回放</span>
+              </div>
+              <h3 class="sig-title"><a href="https://github.com/lexmount/moli/issues/2856" target="_blank" rel="noopener">consoleAPICalled events arrive after evaluate response under awaitPromise</a></h3>
+              <blockquote class="verbatim">
+                <div class="block-label">作者 / 维护者原话短摘（@XDLCS）</div>
+                “With Runtime.enable active and a long-running Runtime.evaluate (awaitPromise: true), some Runtime.consoleAPICalled events produced during evaluation arrive after the evaluate response instead of before it. Agents that treat the evaluate response as completion and then close miss the tail of console output.”
+              </blockquote>
+              <div class="judgment">
+                <div class="block-label amber">运营判断（可核验推演）</div>
+                Puppeteer/Playwright 生态默认把 Runtime.evaluate 返回当作脚本日志已刷新的信号；社区贡献者在 Discussion #3465 中提到已针对该问题提交 PR #3471，需跟进研发合入进度并校验 CDP 时序兼容性。
+              </div>
+              <div class="links-row">
+                <a class="evidence-btn" href="https://github.com/lexmount/moli/issues/2856" target="_blank" rel="noopener">核对原帖具体回复 ↗</a>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="card-top">
+                <span class="idx">[S04]</span>
+                <span class="repo-chip">lightpanda-io/browser</span>
+                <span class="sample-badge">历史案例回放</span>
+              </div>
+              <h3 class="sig-title"><a href="https://github.com/lightpanda-io/browser/issues/1096" target="_blank" rel="noopener">Multi-context &amp; multi-page environment</a></h3>
+              <blockquote class="verbatim">
+                <div class="block-label">作者 / 维护者原话短摘（@krichprollsch）</div>
+                “Multi-context and Multi-page is in one of our goal for the near future (~6 months), but it requires important changes in the browser. The main one is the way we are using libdom, for now we can&#x27;t have two DOM tree open at the same time.”
+              </blockquote>
+              <div class="judgment">
+                <div class="block-label amber">运营判断（可核验推演）</div>
+                竞品维护者确认受限于底层单 DOM 树，单进程暂无法同时承载多页面/多上下文，用户只能自行搭建多进程负载均衡；可制作单进程多 isolatedContext 并发实测教程，精准承接需要轻量多会话隔离的迁移团队。
+              </div>
+              <div class="links-row">
+                <a class="evidence-btn" href="https://github.com/lightpanda-io/browser/issues/1096#issuecomment-3345251381" target="_blank" rel="noopener">核对原帖具体回复 ↗</a>
+              </div>
+            </article>
+            
+            <article class="card">
+              <div class="card-top">
+                <span class="idx">[S05]</span>
+                <span class="repo-chip">lightpanda-io/browser</span>
+                <span class="sample-badge">实时公开采集</span>
+              </div>
+              <h3 class="sig-title"><a href="https://github.com/lightpanda-io/browser/issues/2140" target="_blank" rel="noopener">Support screencast (useful for agent-browser dashboard mode)</a></h3>
+              <blockquote class="verbatim">
+                <div class="block-label">作者 / 维护者原话短摘（@krichprollsch）</div>
+                “Right now, agent-browser dashboard is a life saver for multiple sessions and lightweight monitoring of the agents behavior. But lightpanda it not compatible with it. That would be huge. Thanks for this!”
+              </blockquote>
+              <div class="judgment">
+                <div class="block-label amber">运营判断（可核验推演）</div>
+                Lightpanda 核心维护者明确回复因其无渲染管线暂不支持 Screencast、截图与 PDF 且短期不排期；而多会话可视化监控是 Agent 开发者的刚需，可在 Moli 对外技术文档与对比材料中重点说明「默认省内存、按需单次渲染原生支持低频 CDP Screencast 与截图」的架构差异。
+              </div>
+              <div class="links-row">
+                <a class="evidence-btn" href="https://github.com/lightpanda-io/browser/issues/2140" target="_blank" rel="noopener">核对原帖具体回复 ↗</a>
+              </div>
+            </article>
+            
+    </div>
+
+    <h2>三、Awesome Moli 生态去重台账摘录（共收录 51 项）</h2>
+    <div class="eco-grid">
+      
+        <div class="eco-item">
+          <a href="https://github.com/Spxg/limo" target="_blank" rel="noopener"><strong>Limo</strong></a>
+          <span class="eco-slug">Spxg/limo</span>
+          <p>Runs JavaScript in the terminal with all of Moli’s browser Web APIs.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/Stravia-AI/moli-stealth" target="_blank" rel="noopener"><strong>moli-stealth</strong></a>
+          <span class="eco-slug">Stravia-AI/moli-stealth</span>
+          <p>Gives Moli’s HTTP and WebSocket connections a Chrome-like network profile.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/WSAdam/pilot" target="_blank" rel="noopener"><strong>pilot</strong></a>
+          <span class="eco-slug">WSAdam/pilot</span>
+          <p>Can open a window to watch a Playwright MCP agent browse.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/codeceptjs/CodeceptJS" target="_blank" rel="noopener"><strong>CodeceptJS</strong></a>
+          <span class="eco-slug">codeceptjs/CodeceptJS</span>
+          <p>Runs end-to-end tests with Moli through an experimental backend.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/kmjtechno/kmj-codebridge" target="_blank" rel="noopener"><strong>KMJ CodeBridge</strong></a>
+          <span class="eco-slug">kmjtechno/kmj-codebridge</span>
+          <p>Can check whether Moli extracts text from predefined public test pages.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/rehantheorylab-pixel/browser-bridge-for-muse" target="_blank" rel="noopener"><strong>Browser Bridge for Muse</strong></a>
+          <span class="eco-slug">rehantheorylab-pixel/browser-bridge-for-muse</span>
+          <p>Offers local Moli as a Playwright browser for Muse.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/ironpark/toolz/tree/main/cli/chatctl" target="_blank" rel="noopener"><strong>chatctl</strong></a>
+          <span class="eco-slug">ironpark/toolz</span>
+          <p>Reuses your Chrome login to read chats in the terminal with Moli.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/DevAnimecx/deltabrowser" target="_blank" rel="noopener"><strong>Delta Browser</strong></a>
+          <span class="eco-slug">DevAnimecx/deltabrowser</span>
+          <p>Runs MCP browser sessions in sandboxed Moli workers on x86_64 Linux.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/27painter/dsh-moli" target="_blank" rel="noopener"><strong>dsh-moli</strong></a>
+          <span class="eco-slug">27painter/dsh-moli</span>
+          <p>Cross-agent browser tools for DeepSeek Harness, Codex, and OpenCode, built on a separately installed Moli engine.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/mcaupybugs/claude-job-apply-skill-moli" target="_blank" rel="noopener"><strong>Moli Job Apply</strong></a>
+          <span class="eco-slug">mcaupybugs/claude-job-apply-skill-moli</span>
+          <p>An experimental assistant that fills out job applications and asks before submitting.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/tbdavid2019/888-url2md" target="_blank" rel="noopener"><strong>888-url2md</strong></a>
+          <span class="eco-slug">tbdavid2019/888-url2md</span>
+          <p>Batch-converts webpages to Markdown, rendering JavaScript pages with Moli.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/A3S-Lab/Search" target="_blank" rel="noopener"><strong>A3S Search</strong></a>
+          <span class="eco-slug">A3S-Lab/Search</span>
+          <p>Reads JavaScript-heavy pages from search results with Moli.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/YuniqueUnic/brains" target="_blank" rel="noopener"><strong>Brains</strong></a>
+          <span class="eco-slug">YuniqueUnic/brains</span>
+          <p>Can save dynamic webpages as versioned Markdown notes with Moli.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/7onez/cti-expert" target="_blank" rel="noopener"><strong>CTI Expert</strong></a>
+          <span class="eco-slug">7onez/cti-expert</span>
+          <p>Reads JavaScript-rendered pages with Moli for threat investigations.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/u4399com-beep/heis" target="_blank" rel="noopener"><strong>HEIS</strong></a>
+          <span class="eco-slug">u4399com-beep/heis</span>
+          <p>Can collect dynamically loaded web novel chapters with Moli.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/Sucotasch/hermes-dev#4-deepseek-harness-bridge-agents-own-web-tooling" target="_blank" rel="noopener"><strong>hermes-dev</strong></a>
+          <span class="eco-slug">Sucotasch/hermes-dev</span>
+          <p>mfetch calls Moli directly to read pages as Markdown, render uses it when a page needs a browser, and both can fall back to HTTP.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/bysages/lens" target="_blank" rel="noopener"><strong>Lens</strong></a>
+          <span class="eco-slug">bysages/lens</span>
+          <p>Takes webpage screenshots with Moli through an HTTP API.</p>
+        </div>
+        
+        <div class="eco-item">
+          <a href="https://github.com/MistLoom/ModalPrism" target="_blank" rel="noopener"><strong>ModalPrism</strong></a>
+          <span class="eco-slug">MistLoom/ModalPrism</span>
+          <p>Archives Moli-rendered pages as they appeared at collection time.</p>
+        </div>
+        
+    </div>
+
+    <footer>
+      <span>Engine: Moli (v1.1.27) + SQLite Stateful Ledger + Native MCP Server</span>
+      <span>Redaction Policy: Public-Verified Only (Zero Internal Notes / Zero Credentials)</span>
+    </footer>
+  </div>
+  <script>window.__MOLIPULSE_PUBLIC_REPORT__ = {"brand": "MoliPulse", "version": "2.0.0", "audience": "public", "date_from": "2026-11-19", "date_to": "2026-11-26", "independent_articles_count": 1, "published_posts_count": 2, "projects": [{"project_key": "lexmount/moli#2856", "repo": "lexmount/moli", "repo_url": "https://github.com/lexmount/moli", "stage": "PR 待审", "latest_external_fact": "社区反馈 Runtime.evaluate(awaitPromise:true) 下尾部 consoleAPICalled 事件晚于响应到达，关联修复 PR #3471 待审", "latest_evidence_url": "https://github.com/lexmount/moli/issues/2856", "supplementary_urls": ["https://github.com/lexmount/moli/discussions/3465"]}, {"project_key": "e2e-inc/e2e", "repo": "e2e-inc/e2e", "repo_url": "https://github.com/e2e-inc/e2e", "stage": "已接入并发布", "latest_external_fact": "集成 PR #1843 已合入主分支，且官网可运行登录测试示例（e2e.com/examples/moli）已上线", "latest_evidence_url": "https://github.com/e2e-inc/e2e/pull/1843", "supplementary_urls": ["https://e2e.com/examples/moli"]}, {"project_key": "wasabihu/sessfork", "repo": "wasabihu/sessfork", "repo_url": "https://github.com/wasabihu/sessfork", "stage": "联合推广", "latest_external_fact": "@wasabihu（2026-11-24）新回复：「Permission & charts: You're very welcome to quote the benchmark results and use the charts across your blog, X, Discord, and WeChat official account.」", "latest_evidence_url": "https://github.com/lexmount/moli/discussions/3465#discussioncomment-19846839", "supplementary_urls": ["https://github.com/lexmount/moli/discussions/3465"]}], "verified_signals_count": 5, "awesome_moli_indexed_count": 51};</script>
+</body>
+</html>
