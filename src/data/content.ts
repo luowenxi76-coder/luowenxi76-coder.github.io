@@ -592,7 +592,7 @@ export const CONTENT: Record<Lang, SiteCopy> = {
       cards: [
         {
           org: '优矩互动',
-          period: '2025.12 – 2026.03',
+          period: '2025.05 – 2026.03',
           role: '信息流投放运营实习生',
           headline: '规模化信息流投放与 ROI 归因调优',
           body: '管理抖音、今日头条、百度 100+ 广告账户，日均管理投放预算 20 万元；围绕 CTR、CVR、ROI 输出日报/周报持续迭代定向与出价策略，协同创意团队产出 20+ 短视频与图文素材（篇均互动 30+）。',
@@ -660,7 +660,7 @@ export const CONTENT: Record<Lang, SiteCopy> = {
     footer: {
       aboutTag: 'CANDIDATE PROFILE // 2027',
       name: '罗文希 · LUO WENXI',
-      eduLine: '北京语言大学 数字经济硕士（2025.09–2027.06）｜ 广东财经大学 国际经济与贸易本科（2019.09–2023.06）',
+      eduLine: '北京语言大学 数字经济硕士（2025.09–2027.06）｜ 广东财经大学华商学院 国际经济与贸易本科（2019.09–2023.06）',
       targetLine: '2027 届应届生身份纯净 · 意向全职城市：深圳 / 广州 / 东莞 · 欢迎随时约聊 AI 产品运营 / AI 产品经理机会',
       statusBadge: 'OPEN TO 2027 CAMPUS / INTERNSHIP',
       copyPhone: '复制手机号',
@@ -1078,7 +1078,7 @@ export const CONTENT: Record<Lang, SiteCopy> = {
       cards: [
         {
           org: 'Youju Interactive',
-          period: '2025.12 – 2026.03',
+          period: '2025.05 – 2026.03',
           role: 'Performance Ad Operations Intern',
           headline: 'Scaled Feed Ad Optimization & ROI Attribution',
           body: 'Managed 100+ ad accounts across Douyin, Toutiao, and Baidu at ¥200K average daily spend; delivered daily/weekly CTR, CVR, and ROI diagnostics to tune targeting and bids while collaborating on 20+ video/image creatives (30+ avg. interactions).',
@@ -1146,7 +1146,7 @@ export const CONTENT: Record<Lang, SiteCopy> = {
     footer: {
       aboutTag: 'CANDIDATE PROFILE // 2027',
       name: 'LUO WENXI · 罗文希',
-      eduLine: 'M.S. Digital Economy, Beijing Language and Culture University (2025.09–2027.06) | B.A. Int’l Economics & Trade, GDUFE (2019.09–2023.06)',
+      eduLine: 'M.S. Digital Economy, Beijing Language and Culture University (2025.09–2027.06) | B.A. Int’l Economics & Trade, Huashang College, GDUFE (2019.09–2023.06)',
       targetLine: 'Clean 2027 Fresh Graduate Status · Target Cities: Shenzhen / Guangzhou / Dongguan · Open to AI Product Ops & AI PM Roles',
       statusBadge: 'OPEN TO 2027 CAMPUS / INTERNSHIP',
       copyPhone: 'Copy Phone',
